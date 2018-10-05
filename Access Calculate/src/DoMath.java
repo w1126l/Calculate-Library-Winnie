@@ -47,7 +47,7 @@ public class DoMath {
 		
 		System.out.println(Calculate.gcf(8, 16));
 		
-		System.out.println(Calculate.sqrt(87));
+		System.out.println(Calculate.sqrt(16));
 		
 		System.out.println(Calculate.quadForm(1, 4, -2));
 	

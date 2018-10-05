@@ -1,4 +1,4 @@
-/* This class will be responsible for all calculations.
+/* This class will be responsible for all calculations in the quadratic client.
  * @author Winnie Liang
  * Version 1 10/4/18
  */
