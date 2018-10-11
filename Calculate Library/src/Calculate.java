@@ -1,6 +1,7 @@
 /* This class contains the methods to do various math related tasks.
- * @author Winnie Liang
- * Version 2 10/4/18
+ * Author: Winnie Liang
+ * Date: 10/10/18
+ * Last Change: fixed max three doubles and round2 + some naming of input
  */
 
 public class Calculate {
@@ -46,14 +47,14 @@ public class Calculate {
 		}
 	} // A call toMixedNum converts an improper fraction into a mixed number.
 	
-	public static String foil(int number1, int number2, int number3, int number4, String n) {
-		return (number1 * number3) + n + "^2 + " +  ((number1 * number4) + (number2 * number3)) + n + " + " + (number2 * number4);
+	public static String foil(int x1, int m, int x2, int n, String variable) {
+		return (x1 * x2) + variable + "^2 + " +  ((x1 * n) + (m * x2)) + variable + " + " + (m * n);
 	} // A call to foil converts a binomial multiplication of the form into a quadratic equation in standard form.
 	
-	public static boolean isDivisibleBy(double number1, double number2) {
-		if (number2 == 0) {
+	public static boolean isDivisibleBy(double dividend, double divisor) {
+		if (divisor == 0) {
 			throw new IllegalArgumentException("Number cannot be divided by zero.");
-		} else if (number1 % number2 == 0) { 
+		} else if (dividend % divisor == 0) { 
 			return true;
 		} else {
 			return false;
@@ -85,9 +86,9 @@ public class Calculate {
 	} // A method for gcf larger number value.
 	
 	public static double max(double number1, double number2, double number3) {
-		if (number1 > number2 && number1 > number3) {
+		if (number1 >= number2 && number1 >= number3) {
 			return (number1);
-		} else if (number2 > number1 && number2 > number3) {
+		} else if (number2 >= number1 && number2 >= number3) {
 			return (number2);
 		} else {
 			return (number3);
@@ -105,11 +106,18 @@ public class Calculate {
 	} // A call to min returns the smaller of the values passed.
 	
 	public static double round2(double number) {
-		double w = (number + 0.005);	// Add 0.005 to see if it rounds up or not.
-		double x = (double)w * 100;		// Multiply the double by 100 to get it to the amount of numbers that will be the output in front of the decimal.
-		int y = (int)x;					// Cast the number above into an integer to get rid of the rest of the decimal numbers behind the decimal.
-		double z = (double)y / 100;		// Divide the number by 100 to undo the multiplication in the beginning while casting it back to a double.
-		return (z);						// Return the double number.
+		double addedNum;
+		if (number > 0) {
+			addedNum = number + 0.005;
+		} else if (number < 0) {
+			addedNum = number - 0.005;
+		} else {
+			return 0;
+		}
+		double multNum = addedNum * 100;
+		int castedNum = (int) multNum;
+		double answer = (double) castedNum / 100;
+		return answer;
 	} // A call to round2 rounds a double correctly to 2 decimal places and returns a double.
 	
 	public static double exponent(double number, int expo) {

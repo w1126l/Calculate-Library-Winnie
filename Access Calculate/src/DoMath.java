@@ -1,6 +1,7 @@
 /* This is the client code for the Calculate Library
- * @author Winnie Liang
- * Version 2 10/4/18
+ * Author: Winnie Liang
+ * Date: 10/10/18
+ * Last Change: none
  */
 
 public class DoMath {
@@ -33,11 +34,11 @@ public class DoMath {
 		
 		System.out.println(Calculate.max(2.3, 5.7));
 		
-		System.out.println(Calculate.max(1.2, -5.7, -9.0));
+		System.out.println(Calculate.max(0, 0, -2));
 		
 		System.out.println(Calculate.min(5, 9));
 		
-		System.out.println(Calculate.round2(98.30989));
+		System.out.println(Calculate.round2(-7999.999));
 		
 		System.out.println(Calculate.exponent(5.6, 0));
 		

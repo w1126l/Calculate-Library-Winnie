@@ -1,6 +1,7 @@
 /* This class will be responsible for all calculations in the quadratic client.
- * @author Winnie Liang
- * Version 1 10/4/18
+ * Author: Winnie Liang
+ * Date: 10/10/18
+ * Last Change: fixed round 2
  */
 
 public class Quadratic {
@@ -18,11 +19,18 @@ public class Quadratic {
 	} // Returns the absValue; method used for sqrt method.
 	
 	public static double round2(double number) {
-		double w = (number + 0.005);
-		double x = (double)w * 100;
-		int y = (int)x;
-		double z = (double)y / 100;
-		return (z);
+		double addedNum;
+		if (number > 0) {
+			addedNum = number + 0.005;
+		} else if (number < 0) {
+			addedNum = number - 0.005;
+		} else {
+			return 0;
+		}
+		double multNum = addedNum * 100;
+		int castedNum = (int) multNum;
+		double answer = (double) castedNum / 100;
+		return answer;
 	} // Returns the number inputed rounded to two decimals; method used for sqrt method and quadForm method.
 	
 	public static double sqrt(double number) {
@@ -49,39 +57,51 @@ public class Quadratic {
 			double discrim = Quadratic.discriminant(a, b, c);
 			double tworoots1 = (((b * -1) + Quadratic.sqrt(discrim)) / (2 * a));
 			double tworoots2 = (((b * -1) - Quadratic.sqrt(discrim)) / (2 * a));
-			return Quadratic.round2(tworoots1) + " and " + Quadratic.round2(tworoots2);
+			return "(" + Quadratic.round2(tworoots1) + ", 0)" + " and " + "(" + Quadratic.round2(tworoots2) + ", 0)";
 		}
 	} // Returns the intercepts of a quadratic function; method used for quadDescriber method.
 	
 	public static String quadDescriber(double a, double b, double c) {
 		
 		String equation = a + "^(2) + " + b + "x + " + c;
-		String descriptionIntro = "This is the decription of your equation: ";
+		String descriptionIntro = "This is the description of your equation: ";
 		String directionOpened;
+		String aos;
 		String vertex;
-		String intercepts;
+		String xIntercepts;
+		String yIntercept;
 		
 		if (a > 0) {
-			directionOpened = "This quadratic equation opens upward.";
-		} else if (a < 0) {
-			directionOpened = "This quadratic equation opens downward.";
+			directionOpened = "	This quadratic equation opens upward.";
 		} else {
-			directionOpened = "This is not a quadratic equation.";
+			directionOpened = "	This quadratic equation opens downward.";
 		} // Returns what direction the graph opens by assigning the direction depending on the outcome of the if/else method.
 
 		double x = -b / 2 * a;
 		double y = a * (x * x) + (b * x) + c;
-		vertex = "Vertex = (" + x + ", " + y + ")"; // Returns vertex.
+		vertex = "	Vertex = (" + x + ", " + y + ")"; // Returns vertex.
 		
-		intercepts = "The point(s) on the x-axis where the graph passes: ";
-		intercepts += Quadratic.quadForm(a, b, c); // Returns the roots of the graph.
+		aos = "	Axis of symmetry is at: x = ";
+		aos += x;
+		
+		xIntercepts = "	The point(s) on the x-axis where the graph passes: ";
+		xIntercepts += Quadratic.quadForm(a, b, c); // Returns the roots of the graph.
+		
+		yIntercept = "	The point on the y-axis where the graph passes: ";
+		if (c > 0 || c < 0) {
+			yIntercept += "(0, " + c + ")";
+		} else {
+			yIntercept += "no intercept";
+		}
 		
 		System.out.println("Your equation: " + equation);	// Printing equation.
 		System.out.println(""); // To make it neater.
 		System.out.println(descriptionIntro); // Introducing the description a.k.a letting user know the next outputs are the descriptions.
 		System.out.println(directionOpened); // Printing the direction the graph opens up.
 		System.out.println(vertex); // Printing vertex.
-		System.out.println(intercepts); // Printing the roots.
+		System.out.println(aos);
+		System.out.println(xIntercepts); // Printing the roots.
+		System.out.println(yIntercept); // Printing y-intercept.
 		return "";
 		
 	}
