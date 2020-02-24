@@ -1,5 +1,2 @@
 # Calculate-Library-Winnie
-Access Calculate	//
-Calculate Library	//
-QuadraticDescriber //
-This will contain math methods as well as client code that uses the library.
+Contains methods for addition, subtraction, multiplication, and other math methods using the library. Also contains client code to accept user input.
